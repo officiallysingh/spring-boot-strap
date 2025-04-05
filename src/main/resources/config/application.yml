@@ -1,0 +1,149 @@
+# ===================================================================
+# Spring Boot configuration.
+#
+# This configuration will be overridden by the Spring profile you use,
+# for example application-dev.yml if you use the "dev" profile.
+#
+# Full reference for Standard Spring Boot properties is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+# set -Dspring.profiles.active=<dev|sit|int> as JVM argument to run in desired profile
+# If no profile is specified explicitly, application will fall back to default profile, which is "local"
+
+spring:
+  application:
+    name: spring-boot-sample-service
+  docker:
+    compose:
+      enabled: false
+  devtools:
+    add-properties: false
+    restart:
+      enabled: false
+      exclude: logs/*,application.log,*.log,*.log.*
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
+#      - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+#      - org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+      - org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration
+      - org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration
+
+  #------------------------- MongoDB configuration -------------------------
+  data:
+    mongodb:
+      uri: ${MONGODB_URL:mongodb://localhost:27017}
+      database: ${MONGODB_DATABASE:sample_db}
+      auto-index-creation: false
+      uuid-representation: standard
+
+  #------------------------- Database configuration -------------------------
+  datasource:
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/sample_db}
+    username: ${POSTGRES_USERNAME:postgres}
+    password: ${POSTGRES_PASSWORD:admin}
+    hikari:
+      pool-name: sample-connection-pool
+      maximum-pool-size: 32
+      minimum-idle: 8
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    open-in-view: true
+    database: POSTGRESQL
+    properties:
+      '[hibernate.show_sql]': false
+      '[hibernate.format_sql]': true
+      '[hibernate.use_sql_comments]': true
+      '[hibernate.jdbc.time_zone]': UTC
+      '[integration.envers.enabled]': true
+  flyway:
+    enabled: true
+    locations:
+      - classpath:/migration/postgres
+#    baseline-on-migrate: true
+  messages:
+    basename: i18n/messages,i18n/errors,i18n/problems
+    use-code-as-default-message: true
+    #cache-duration=PT10S
+    #fallback-to-system-locale=true
+  jackson:
+    serialization:
+      write-dates-with-zone-id: true
+      write-dates-as-timestamps: false
+    #hateoas:
+    #use-hal-as-default-json-media-type: false
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+    problemdetails:
+      enabled: false
+  threads:
+    virtual:
+      enabled: true
+mongock:
+  enabled: true
+  default-author: system
+  index-creation: true
+  #    transaction-strategy: change_unit
+  migration-scan-package:
+    - com.ksoot.domain.migration.InitMongoDB
+
+#------------------------- Swagger configuration -------------------------
+springdoc:
+  show-actuator: true
+  group-configs:
+    - group: actuator
+      display-name: Actuator
+      paths-to-match: /actuator/**
+    - group: application
+      display-name: Application
+      paths-to-match: /**
+      paths-to-exclude: /actuator/**
+
+#------------------------- Actuators configuration -------------------------
+# If not specified '/actuator' is taken as default. If specified must start with '/'
+#management.endpoints.web.base-path=/
+# Set it as "*", if you want to expose all actuator endpoints
+management:
+  endpoint:
+    health:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: info,health,metrics
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+problem:
+  type-url: http://localhost:${server.port}/problems/help.html
+  debug-enabled: false
+  stacktrace-enabled: false
+  cause-chains-enabled: false
+
+server:
+  port: 8090
+  forward-headers-strategy: framework
+#    servlet:
+#        context-path: /api
+logging:
+  level:
+    ROOT: DEBUG
+debug: false
+
+# ===================================================================
+# Application specific properties
+# Add your own application properties here
+# ===================================================================
+
+application:
+  mongodb:
+    #        entity-base-packages:
+    #            - com.ksoot.hammer
+    auditing:
+      enabled: true
+#            prefix:
+#            suffix: _aud

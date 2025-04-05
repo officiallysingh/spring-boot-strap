@@ -1,0 +1,39 @@
+spring:
+  docker:
+    compose:
+      enabled: true
+#      file: hammer/compose.yml
+      file: compose.yml
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017
+mongock:
+  enabled: true
+
+problem:
+  debug-enabled: false
+  stacktrace-enabled: false
+  cause-chains-enabled: false
+
+#server:
+  #  port: 800
+  #servlet:
+  #context-path:
+
+logging:
+  logback:
+    rollingpolicy:
+      clean-history-on-start: true
+  file:
+    path: logs
+    name: ${logging.file.path}/application.log
+  level:
+    ROOT: info
+debug: false
+
+# ===================================================================
+# Application specific properties
+# Add your own application properties here
+# ===================================================================
+
+        

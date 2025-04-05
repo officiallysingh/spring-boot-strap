@@ -1,0 +1,37 @@
+code,name,isUT
+AN,Andaman and Nicobar Islands,FALSE
+AP,Andhra Pradesh,FALSE
+AR,Arunachal Pradesh,FALSE
+AS,Assam,FALSE
+BR,Bihar,FALSE
+CH,Chandigarh,TRUE
+CT,Chhattisgarh,FALSE
+DD,Daman and Diu,FALSE
+DN,Dadra and Nagar Haveli,FALSE
+DL,Delhi,TRUE
+GA,Goa,FALSE
+GJ,Gujarat,FALSE
+HR,Haryana,FALSE
+HP,Himachal Pradesh,FALSE
+JK,Jammu and Kashmir,FALSE
+JH,Jharkhand,FALSE
+KA,Karnataka,FALSE
+KL,Kerala,FALSE
+LD,Lakshadweep,TRUE
+MP,Madhya Pradesh,FALSE
+MH,Maharashtra,FALSE
+MN,Manipur,FALSE
+ML,Meghalaya,FALSE
+MZ,Mizoram,FALSE
+NL,Nagaland,FALSE
+OD,Odisha,FALSE
+PY,Puducherry,TRUE
+PB,Punjab,FALSE
+RJ,Rajasthan,FALSE
+SK,Sikkim,FALSE
+TN,Tamil Nadu,FALSE
+TS,Telangana,FALSE
+TR,Tripura,FALSE
+UP,Uttar Pradesh,FALSE
+UK,Uttarakhand,FALSE
+WB,West Bengal,FALSE

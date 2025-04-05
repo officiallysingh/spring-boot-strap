@@ -1,0 +1,6 @@
+spring:
+    messages:
+        basename: i18n/messages,i18n/errors,i18n/problems
+        use-code-as-default-message: true
+mongock:
+    enabled: false
