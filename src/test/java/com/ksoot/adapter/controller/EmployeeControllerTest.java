@@ -25,15 +25,14 @@ import com.ksoot.domain.service.EmployeeService;
 import com.ksoot.problem.core.Problems;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.env.Environment;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 // @Disabled
@@ -48,8 +47,6 @@ class EmployeeControllerTest {
 
   private static final String EMPLOYEE_ENDPOINT_PATH = "/v1/employees";
   private static final String TEST_EMPLOYEE_CODE = "ABC123XYZ";
-  private static final UUID TEST_EMPLOYEE_ID =
-      UUID.fromString("5579a758-1dd6-446e-9895-038d93d5aa40");
   private static final String VALIDATE_PATH_PART = "/validate";
 
   @Autowired private MockMvc mockMvc;
@@ -58,7 +55,7 @@ class EmployeeControllerTest {
 
   @Autowired private Environment environment;
 
-  @MockBean private EmployeeService employeeService;
+  @MockitoBean private EmployeeService employeeService;
 
   //  @BeforeAll
   //  public static void init() {

@@ -1,11 +1,11 @@
 # Spring Boot Sample Application
-A comprehensive Spring Boot base project that serves as a template for building robust Spring boot applications.  
-This project comes pre-configured with common enterprise concerns and includes demo implementations to help you get started quickly.
+A comprehensive Spring Boot base project that serves as a template for building robust Spring boot applications following Domain Driven Design([DDD](https://martinfowler.com/bliki/DomainDrivenDesign.html)).  
 
 ## Getting Started
+This project comes pre-configured with common enterprise concerns and includes demo implementations to help you get started quickly.
+It is designed to be a starting point for your Spring Boot applications, providing a solid foundation with best practices and common patterns.
 
 ### Prerequisites
-
 - [Java 21](https://sdkman.io/)
 - [Maven](https://maven.apache.org)
 - [Docker](https://www.docker.com)
@@ -18,7 +18,7 @@ This project comes pre-configured with common enterprise concerns and includes d
 - **Database Versioning**: Implemented using `Flyway` for `Postgres` and using `Mongock` for `MongoDB`.
 - **Audit Logging**: Implemented using `Hibernate Envers` for `Postgres` and Custom implementation for `MongoDB`.
 - **Docker Support**: Docker compose for seamless deployment.
-- **Unit Testing**: Sample Unit test cases.
+- **Unit Testing**: Sample Unit test cases for `Controller` and `Service` classes.
 
 ## Installation
 1. Clone the repository `https://github.com/officiallysingh/spring-boot-strap.git` 
@@ -26,18 +26,83 @@ This project comes pre-configured with common enterprise concerns and includes d
    ```bash
    mvn clean install
    ```
-3. Run the application in IDE by setting `spring.active.profiles` to `docker` or `local` in the run configuration.
-   - For Docker:
-     - Set `spring.profiles.active` to `docker`
-   - For Local:
-     - Set `spring.profiles.active` to `local`
-4. Run the application using Docker:
+3. Run the application in IDE by setting `spring.active.profiles` to `docker` or from cmd as follows.
    ```bash
    mvn spring-boot:run -Pdocker
    ```
-5. Access the API documentation at: `http://localhost:8080/swagger-ui.html`
+4. Or create `application-local.yml` as follows.
+```yaml
+spring:
+  data:
+    mongodb:
+      uri: <Your MongoDB URL>
+      database: <Your MongoDB Database name>
+  datasource:
+    url: <Your postgres URL>
+    username: <Your postgres Username>
+    password: <Your postgres Password>
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    open-in-view: true
+    properties:
+      '[hibernate.show_sql]': false
+      '[hibernate.format_sql]': true
+      '[hibernate.use_sql_comments]': true
+      '[hibernate.jdbc.time_zone]': UTC
+      '[integration.envers.enabled]': true
+      
+  flyway:
+    enabled: true
+    
+mongock:
+  enabled: true
+  default-author: system
+  index-creation: true
+#  transaction-strategy: change_unit
 
+problem:
+  debug-enabled: false
+  stacktrace-enabled: true
+  cause-chains-enabled: false
 
+server:
+  port: 8090
+    #servlet:
+  #context-path:
+
+logging:
+  file:
+    path: logs
+    name: ${logging.file.path}/application.log
+  level:
+    ROOT: info
+  logback:
+    rollingpolicy:
+      clean-history-on-start: true
+debug: false
+
+# ===================================================================
+# Application specific properties
+# Add your own application properties here
+# ===================================================================
+
+application:
+  mongodb:
+#   entity-base-packages:
+#     - com.ksoot.hammer
+    auditing:
+      enabled: true
+#       prefix:
+#       suffix: _aud
+```
+
+and run the application in `local` profile by setting `spring.profiles.active` to `local` in IDE or from cmd as follows.
+   ```bash
+   mvn spring-boot:run -Plocal
+   ```
+5. Access the **Swagger** at: [http://localhost:8090/swagger-ui/index.html](http://localhost:8090/swagger-ui/index.html)
 
 ### Database Support
 

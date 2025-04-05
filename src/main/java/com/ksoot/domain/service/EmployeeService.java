@@ -21,7 +21,7 @@ public class EmployeeService {
   private final EmployeeRepository employeeRepository;
 
   @Transactional(readOnly = true)
-  public Boolean doesEmployeeExist(final String code) {
+  public boolean doesEmployeeExist(final String code) {
     return this.employeeRepository.existsByCode(code);
   }
 
