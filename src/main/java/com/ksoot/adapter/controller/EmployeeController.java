@@ -1,6 +1,5 @@
 package com.ksoot.adapter.controller;
 
-import static com.ksoot.common.CommonConstants.DEFAULT_PAGE_SIZE;
 import static com.ksoot.common.CommonErrorKeys.EMPTY_UPDATE_REQUEST;
 import static com.ksoot.domain.mapper.SampleMappers.EMPLOYEE_AUDIT_PAGE_TRANSFORMER;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -18,17 +17,13 @@ import com.ksoot.domain.model.dto.EmployeeUpdationRQ;
 import com.ksoot.domain.model.dto.EmployeeVM;
 import com.ksoot.domain.service.EmployeeService;
 import com.ksoot.problem.core.Problems;
-import io.swagger.v3.oas.annotations.Parameter;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.history.Revision;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -88,13 +83,7 @@ class EmployeeController implements EmployeeApi {
 
   @Override
   public PaginatedResource<RevisionRecord<Integer, Employee, EmployeeVM>> getEmployeesAuditHistory(
-      @Parameter(
-              description = "Employee Id",
-              required = true,
-              example = "550e8400-e29b-41d4-a716-446655440000")
-          @PathVariable(name = "id")
-          final Long id,
-      @ParameterObject @PageableDefault(size = DEFAULT_PAGE_SIZE) final Pageable pageRequest) {
+      final Long id, final Pageable pageRequest) {
     Page<Revision<Integer, Employee>> auditHistoryPage =
         this.employeeService.getEmployeeAuditHistory(id, pageRequest);
     return PaginatedResourceAssembler.assemble(auditHistoryPage, EMPLOYEE_AUDIT_PAGE_TRANSFORMER);

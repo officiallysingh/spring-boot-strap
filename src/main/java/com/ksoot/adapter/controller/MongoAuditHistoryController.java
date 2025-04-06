@@ -49,7 +49,7 @@ class MongoAuditHistoryController {
       })
   public PaginatedResource<AuditEvent> getProducts(
       @Parameter(
-              description = "Source MongoDB Collection name. E.g. <b>products</b>",
+              description = "Source MongoDB Collection name. E.g. <b>cities</b> or <b>states</b>",
               required = true)
           @RequestParam
           final String collectionName,

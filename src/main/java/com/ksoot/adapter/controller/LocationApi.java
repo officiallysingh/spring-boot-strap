@@ -35,8 +35,7 @@ public interface LocationApi extends Api {
   // -------- States ----------
   @Operation(
       operationId = "state-exists-by-code",
-      summary = "Check if a State with given code exists",
-      tags = {"State"})
+      summary = "Check if a State with given code exists")
   @ApiResponses(
       value = {
         @ApiResponse(
@@ -49,10 +48,7 @@ public interface LocationApi extends Api {
           @PathVariable(name = "code")
           final String code);
 
-  @Operation(
-      operationId = "create-state",
-      summary = "Creates a State",
-      tags = {"State"})
+  @Operation(operationId = "create-state", summary = "Creates a State")
   @ApiResponses(
       value = {
         @ApiResponse(
@@ -72,10 +68,7 @@ public interface LocationApi extends Api {
       @Parameter(description = "Create State request", required = true) @RequestBody @Valid
           final StateCreationRQ request);
 
-  @Operation(
-      operationId = "get-state-by-id",
-      summary = "Gets a State by Id",
-      tags = {"State"})
+  @Operation(operationId = "get-state-by-id", summary = "Gets a State by Id")
   @ApiResponses(
       value = {
         @ApiResponse(responseCode = SC_200, description = "State returned successfully"),
@@ -93,10 +86,7 @@ public interface LocationApi extends Api {
           @RequestHeader(name = HEADER_EXPAND, required = false)
           final String expand);
 
-  @Operation(
-      operationId = "get-state-by-code",
-      summary = "Gets a State by code",
-      tags = {"State"})
+  @Operation(operationId = "get-state-by-code", summary = "Gets a State by code")
   @ApiResponses(
       value = {
         @ApiResponse(responseCode = SC_200, description = "State returned successfully"),
@@ -114,10 +104,7 @@ public interface LocationApi extends Api {
           @RequestHeader(name = HEADER_EXPAND, required = false)
           final String expand);
 
-  @Operation(
-      operationId = "get-all-states",
-      summary = "Get all States",
-      tags = {"State"})
+  @Operation(operationId = "get-all-states", summary = "Get all States")
   @ApiResponses(
       value = {
         @ApiResponse(
@@ -131,10 +118,7 @@ public interface LocationApi extends Api {
           @RequestHeader(name = HEADER_EXPAND, required = false)
           final String expand);
 
-  @Operation(
-      operationId = "get-state-list-items",
-      summary = "Get all State List items",
-      tags = {"State"})
+  @Operation(operationId = "get-state-list-items", summary = "Get all State List items")
   @ApiResponses(
       value = {
         @ApiResponse(
@@ -145,10 +129,7 @@ public interface LocationApi extends Api {
   @GetMapping(path = "/states/list-items", produces = MediaType.APPLICATION_JSON_VALUE)
   ResponseEntity<List<Pair<String, String>>> getAllStateListItems();
 
-  @Operation(
-      operationId = "update-state",
-      summary = "Updates a State",
-      tags = {"State"})
+  @Operation(operationId = "update-state", summary = "Updates a State")
   @ApiResponses(
       value = {
         @ApiResponse(
@@ -175,10 +156,7 @@ public interface LocationApi extends Api {
       @Parameter(description = "Update State request", required = true) @RequestBody @Valid
           final StateUpdationRQ request);
 
-  @Operation(
-      operationId = "delete-state",
-      summary = "Deletes a State",
-      tags = {"State"})
+  @Operation(operationId = "delete-state", summary = "Deletes a State")
   @ApiResponses(
       value = {
         @ApiResponse(
@@ -199,8 +177,7 @@ public interface LocationApi extends Api {
   // -------- Cities ----------
   @Operation(
       operationId = "city-exists-by-code",
-      summary = "Check if a City with given code exists",
-      tags = {"City"})
+      summary = "Check if a City with given code exists")
   @ApiResponses(
       value = {
         @ApiResponse(
@@ -213,10 +190,7 @@ public interface LocationApi extends Api {
           @PathVariable(name = "code")
           final String code);
 
-  @Operation(
-      operationId = "create-city",
-      summary = "Creates a City",
-      tags = {"City"})
+  @Operation(operationId = "create-city", summary = "Creates a City")
   @ApiResponses(
       value = {
         @ApiResponse(
@@ -239,10 +213,7 @@ public interface LocationApi extends Api {
       @Parameter(description = "Create City request", required = true) @RequestBody @Valid
           final CityCreationRQ request);
 
-  @Operation(
-      operationId = "get-city-by-id",
-      summary = "Gets a city by Id",
-      tags = {"City"})
+  @Operation(operationId = "get-city-by-id", summary = "Gets a city by Id")
   @ApiResponses(
       value = {
         @ApiResponse(responseCode = SC_200, description = "City returned successfully"),
@@ -266,10 +237,7 @@ public interface LocationApi extends Api {
           @RequestHeader(name = HEADER_EXPAND, required = false)
           final List<String> expand);
 
-  @Operation(
-      operationId = "get-city-by-code",
-      summary = "Gets a City by code",
-      tags = {"City"})
+  @Operation(operationId = "get-city-by-code", summary = "Gets a City by code")
   @ApiResponses(
       value = {
         @ApiResponse(responseCode = SC_200, description = "City returned successfully"),
@@ -293,10 +261,7 @@ public interface LocationApi extends Api {
           @RequestHeader(name = HEADER_EXPAND, required = false)
           final List<String> expand);
 
-  @Operation(
-      operationId = "get-all-cities-by-state-id",
-      summary = "Get all Cities by State Id",
-      tags = {"City"})
+  @Operation(operationId = "get-all-cities-by-state-id", summary = "Get all Cities by State Id")
   @ApiResponses(
       value = {
         @ApiResponse(
@@ -319,10 +284,7 @@ public interface LocationApi extends Api {
           @RequestHeader(name = HEADER_EXPAND, required = false)
           final List<String> expand);
 
-  @Operation(
-      operationId = "get-all-cities",
-      summary = "Get all Cities",
-      tags = {"City"})
+  @Operation(operationId = "get-all-cities", summary = "Get all Cities")
   @ApiResponses(
       value = {
         @ApiResponse(
@@ -342,10 +304,7 @@ public interface LocationApi extends Api {
           @RequestHeader(name = HEADER_EXPAND, required = false)
           final List<String> expand);
 
-  @Operation(
-      operationId = "get-city-list-items",
-      summary = "Get all City List items",
-      tags = {"City"})
+  @Operation(operationId = "get-city-list-items", summary = "Get all City List items")
   @ApiResponses(
       value = {
         @ApiResponse(
@@ -356,10 +315,7 @@ public interface LocationApi extends Api {
   @GetMapping(path = "/cities/list-items", produces = MediaType.APPLICATION_JSON_VALUE)
   ResponseEntity<List<Pair<String, String>>> getAllCitiesListItems();
 
-  @Operation(
-      operationId = "update-city",
-      summary = "Updates a City",
-      tags = {"City"})
+  @Operation(operationId = "update-city", summary = "Updates a City")
   @ApiResponses(
       value = {
         @ApiResponse(
@@ -386,10 +342,7 @@ public interface LocationApi extends Api {
       @Parameter(description = "Update City request", required = true) @RequestBody @Valid
           final CityUpdationRQ request);
 
-  @Operation(
-      operationId = "delete-city",
-      summary = "Deletes a City",
-      tags = {"City"})
+  @Operation(operationId = "delete-city", summary = "Deletes a City")
   @ApiResponses(
       value = {
         @ApiResponse(

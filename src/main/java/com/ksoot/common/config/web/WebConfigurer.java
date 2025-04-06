@@ -31,9 +31,9 @@ public class WebConfigurer implements ServletContextInitializer, WebMvcConfigure
 
   private final ActuatorEndpointProperties actuatorEndpointProperties;
 
-  private List<HandlerMethodArgumentResolver> customArgumentResolvers;
+  private final List<HandlerMethodArgumentResolver> customArgumentResolvers;
 
-  private List<HandlerInterceptor> customInterceptors;
+  private final List<HandlerInterceptor> customInterceptors;
 
   public WebConfigurer(
       final Environment env,

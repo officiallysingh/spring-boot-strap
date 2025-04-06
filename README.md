@@ -1,4 +1,4 @@
-# Spring Boot Sample Application
+# Spring Bootstrap Application
 A comprehensive Spring Boot base project that serves as a template for building robust Spring boot applications following Domain Driven Design([DDD](https://martinfowler.com/bliki/DomainDrivenDesign.html)).  
 
 ## Getting Started
@@ -17,8 +17,8 @@ It is designed to be a starting point for your Spring Boot applications, providi
 - **API Development**: Sample RESTful CRUD APIs following best practices and API documentation using `springdoc-openapi`.
 - **Database Versioning**: Implemented using `Flyway` for `Postgres` and using `Mongock` for `MongoDB`.
 - **Audit Logging**: Implemented using `Hibernate Envers` for `Postgres` and Custom implementation for `MongoDB`.
-- **Docker Support**: Docker compose for seamless deployment.
-- **Unit Testing**: Sample Unit test cases for `Controller` and `Service` classes.
+- **Docker Support**:` Docker compose` for seamless deployment.
+- **Unit Testing**: Example Unit test cases for `Controller` and `Service` classes. Whole Spring boot context should not be loaded for unit tests, instead Slice testing should be implemented.
 
 ## Installation
 1. Clone the repository `https://github.com/officiallysingh/spring-boot-strap.git` 
@@ -30,75 +30,75 @@ It is designed to be a starting point for your Spring Boot applications, providi
    ```bash
    mvn spring-boot:run -Pdocker
    ```
-4. Or create `application-local.yml` as follows.
-```yaml
-spring:
-  data:
-    mongodb:
-      uri: <Your MongoDB URL>
-      database: <Your MongoDB Database name>
-  datasource:
-    url: <Your postgres URL>
-    username: <Your postgres Username>
-    password: <Your postgres Password>
-  jpa:
-    hibernate:
-      ddl-auto: validate
-    show-sql: false
-    open-in-view: true
-    properties:
-      '[hibernate.show_sql]': false
-      '[hibernate.format_sql]': true
-      '[hibernate.use_sql_comments]': true
-      '[hibernate.jdbc.time_zone]': UTC
-      '[integration.envers.enabled]': true
-      
-  flyway:
-    enabled: true
+4. In case you want to use self hosted Postgres and MongoDB, create `application-local.yml` as follows, update Postgres and MongoDB connection parameters.
+   ```yaml
+   spring:
+     data:
+       mongodb:
+         uri: <Your MongoDB URL>
+         database: <Your MongoDB Database name>
+     datasource:
+       url: <Your postgres URL>
+       username: <Your postgres Username>
+       password: <Your postgres Password>
+     jpa:
+       hibernate:
+         ddl-auto: validate
+       show-sql: false
+       open-in-view: true
+       properties:
+         '[hibernate.show_sql]': false
+         '[hibernate.format_sql]': true
+         '[hibernate.use_sql_comments]': true
+         '[hibernate.jdbc.time_zone]': UTC
+         '[integration.envers.enabled]': true
+          
+     flyway:
+       enabled: true
+        
+   mongock:
+     enabled: true
+     default-author: system
+     index-creation: true
+   #  transaction-strategy: change_unit
     
-mongock:
-  enabled: true
-  default-author: system
-  index-creation: true
-#  transaction-strategy: change_unit
+   problem:
+     debug-enabled: false
+     stacktrace-enabled: true
+     cause-chains-enabled: false
+    
+   server:
+     port: 8090
+     #servlet:
+       #context-path:
+    
+   logging:
+     file:
+       path: logs
+       name: ${logging.file.path}/application.log
+     level:
+       ROOT: info
+     logback:
+       rollingpolicy:
+         clean-history-on-start: true
+   debug: false
+    
+   # ===================================================================
+   # Application specific properties
+   # Add your own application properties here
+   # ===================================================================
+    
+   application:
+     mongodb:
+    #   entity-base-packages:
+    #     - com.ksoot.hammer
+       auditing:
+         enabled: true
+    #       prefix:
+    #       suffix: _aud
+    ```
 
-problem:
-  debug-enabled: false
-  stacktrace-enabled: true
-  cause-chains-enabled: false
-
-server:
-  port: 8090
-    #servlet:
-  #context-path:
-
-logging:
-  file:
-    path: logs
-    name: ${logging.file.path}/application.log
-  level:
-    ROOT: info
-  logback:
-    rollingpolicy:
-      clean-history-on-start: true
-debug: false
-
-# ===================================================================
-# Application specific properties
-# Add your own application properties here
-# ===================================================================
-
-application:
-  mongodb:
-#   entity-base-packages:
-#     - com.ksoot.hammer
-    auditing:
-      enabled: true
-#       prefix:
-#       suffix: _aud
-```
-
-and run the application in `local` profile by setting `spring.profiles.active` to `local` in IDE or from cmd as follows.
+   and run the application in `local` profile by setting `spring.profiles.active` to `local` in IDE or from cmd as follows.
    ```bash
    mvn spring-boot:run -Plocal
    ```

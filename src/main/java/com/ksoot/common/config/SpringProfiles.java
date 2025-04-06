@@ -12,6 +12,8 @@ public class SpringProfiles {
 
   public static final String LOCAL = "local";
 
+  public static final String DOCKER = "docker";
+
   public static final String DEVELOPMENT = "dev";
 
   public static final String STAGE = "stage";
