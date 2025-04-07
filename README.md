@@ -154,7 +154,6 @@ Following Domain Driven Design([DDD](https://martinfowler.com/bliki/DomainDriven
 ### Exception Handling
 
 ## Testing
-
 The project includes Unit tests following Slice testing technique, so that the whole Spring boot context is not loaded for unit tests and they run faster.
 
 - Unit tests
@@ -165,7 +164,37 @@ Feel free to fork this repository and use it as a base for your projects. If you
 ## Licence
 Open source [**The MIT License**](http://www.opensource.org/licenses/mit-license.php)
 
-## Authors and acknowledgment
-
+## Author
 [**Rajveer Singh**](https://www.linkedin.com/in/rajveer-singh-589b3950/), In case you find any issues or need any support, please email me at raj14.1984@gmail.com.
-Please give me a :star: if you find it helpful.
+Give it a :star: on [Github](https://github.com/officiallysingh/spring-boot-spark-kubernetes) and a :clap: on [**medium.com**](https://officiallysingh.medium.com/spark-spring-boot-starter-e206def765b9) if you find it helpful.
+
+## References
+* [Spring boot](https://docs.spring.io/spring-boot/index.html)
+* [Spring boot Exception Handling](https://github.com/officiallysingh/spring-boot-problem-handler)
+* [Spring Boot DevTools](https://docs.spring.io/spring-boot/3.4.3/reference/using/devtools.html)
+* [Spring Configuration Processor](https://docs.spring.io/spring-boot/3.4.3/specification/configuration-metadata/annotation-processor.html)
+* [Docker Compose Support](https://docs.spring.io/spring-boot/3.4.3/reference/features/dev-services.html#features.dev-services.docker-compose)
+* [Spring Web](https://docs.spring.io/spring-boot/3.4.3/reference/web/servlet.html)
+* [Spring Data JPA](https://docs.spring.io/spring-boot/3.4.3/reference/data/sql.html#data.sql.jpa-and-spring-data)
+* [Audit Logging - Postgres](https://hibernate.org/orm/envers)
+* [Flyway Migration - Postgres](https://docs.spring.io/spring-boot/3.4.3/how-to/data-initialization.html#howto.data-initialization.migration-tool.flyway)
+* [Spring Data MongoDB](https://docs.spring.io/spring-boot/3.4.3/reference/data/nosql.html#data.nosql.mongodb)
+* [Audit Logging - MongoDB](https://github.com/officiallysingh/spring-boot-mongodb-auditing)
+* [Mongock Migration - MongoDB](https://docs.spring.io/spring-boot/3.4.3/how-to/data-initialization.html#howto.data-initialization.migration-tool.flyway)
+* [Validation](https://docs.spring.io/spring-boot/3.4.3/reference/io/validation.html)
+* [Spring Boot Actuator](https://docs.spring.io/spring-boot/3.4.3/reference/actuator/index.html)
+* [OpenFeign](https://docs.spring.io/spring-cloud-openfeign/reference/)
+* [Spring Security](https://docs.spring.io/spring-boot/3.4.3/reference/web/spring-security.html)
+* [Spring for Apache Kafka](https://docs.spring.io/spring-boot/3.4.3/reference/messaging/kafka.html)
+* [Spring Boot Testcontainers support](https://docs.spring.io/spring-boot/3.4.3/reference/testing/testcontainers.html#testing.testcontainers)
+* [Testcontainers](https://java.testcontainers.org/)
+* [Testcontainers MongoDB Module Reference Guide](https://java.testcontainers.org/modules/databases/mongodb/)
+* [Testcontainers Kafka Modules Reference Guide](https://java.testcontainers.org/modules/kafka/)
+* [Testcontainers Postgres Module Reference Guide](https://java.testcontainers.org/modules/databases/postgres/)
+* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
+* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/3.4.3/maven-plugin)
+* [Create an OCI image](https://docs.spring.io/spring-boot/3.4.3/maven-plugin/build-image.html)
+* [Distributed Tracing Reference Guide](https://docs.micrometer.io/tracing/reference/index.html)
+* [OTLP for metrics](https://docs.spring.io/spring-boot/3.4.3/reference/actuator/metrics.html#actuator.metrics.export.otlp)
+* [Getting Started with Distributed Tracing](https://docs.spring.io/spring-boot/3.4.3/reference/actuator/tracing.html)
+
