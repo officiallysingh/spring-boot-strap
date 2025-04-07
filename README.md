@@ -1,11 +1,20 @@
 # Spring Bootstrap Application
-A comprehensive Spring Boot base project that serves as a template for building robust Spring boot applications following Domain Driven Design([DDD](https://martinfowler.com/bliki/DomainDrivenDesign.html)).  
+
+[![Java](https://img.shields.io/badge/java-21-blue.svg)](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html)
+[![Maven](https://img.shields.io/badge/maven-3.9.5-blue.svg)](https://maven.apache.org/)
+[![Postgres](https://img.shields.io/badge/postgres-17.4-blue.svg)](https://www.postgresql.org/)
+[![MongoDB](https://img.shields.io/badge/mongodb-6.0.6-blue.svg)](https://www.mongodb.com/)
+[![Docker](https://img.shields.io/badge/docker-20.10.24-blue.svg)](https://www.docker.com/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](http://www.opensource.org/licenses/mit-license.php)
+A comprehensive Spring Boot base project that serves as an opinionated template for building robust Spring boot applications.
 
 ## Getting Started
+
 This project comes pre-configured with common enterprise concerns and includes demo implementations to help you get started quickly.
 It is designed to be a starting point for your Spring Boot applications, providing a solid foundation with best practices and common patterns.
 
 ### Prerequisites
+
 - [Java 21](https://sdkman.io/)
 - [Maven](https://maven.apache.org)
 - [Docker](https://www.docker.com)
@@ -13,6 +22,7 @@ It is designed to be a starting point for your Spring Boot applications, providi
 - Optional: [Configure Formatter in IntelliJ](https://github.com/google/google-java-format/blob/master/README.md#intellij-android-studio-and-other-jetbrains-ides), similarly for other IDEs
 
 ## Features
+
 - **Database Support**: Both `PostgreSQL` and `MongoDB` sample repositories with `Spring Data JPA` and `Spring Data Mongodb` implementations.
 - **API Development**: Sample RESTful CRUD APIs following best practices and API documentation using `springdoc-openapi`.
 - **Database Versioning**: Implemented using `Flyway` for `Postgres` and using `Mongock` for `MongoDB`.
@@ -20,8 +30,9 @@ It is designed to be a starting point for your Spring Boot applications, providi
 - **Docker Support**:` Docker compose` for seamless deployment.
 - **Unit Testing**: Example Unit test cases for `Controller` and `Service` classes. Whole Spring boot context should not be loaded for unit tests, instead Slice testing should be implemented.
 
-## Installation
-1. Clone the repository `https://github.com/officiallysingh/spring-boot-strap.git` 
+## Quick start
+
+1. Clone the repository `https://github.com/officiallysingh/spring-boot-strap.git`
 2. Build the application using Maven:
    ```bash
    mvn clean install
@@ -30,7 +41,12 @@ It is designed to be a starting point for your Spring Boot applications, providi
    ```bash
    mvn spring-boot:run -Pdocker
    ```
-4. In case you want to use self hosted Postgres and MongoDB, create `application-local.yml` as follows, update Postgres and MongoDB connection parameters.
+   > [!IMPORTANT]
+   > On first run, it may take some time to download Docker images for Postgres and MongoDB,  
+   > but the application may try to connect to databases too early before their docker containers are started,  
+   > hence failing due to db connection exception. Just make sure docker imaged are downloaded and then run the application again.
+4. In case you want to use self-hosted Postgres and MongoDB, create `application-local.yml` as follows, update Postgres and MongoDB connection parameters.
+
    ```yaml
    spring:
      data:
@@ -47,31 +63,31 @@ It is designed to be a starting point for your Spring Boot applications, providi
        show-sql: false
        open-in-view: true
        properties:
-         '[hibernate.show_sql]': false
-         '[hibernate.format_sql]': true
-         '[hibernate.use_sql_comments]': true
-         '[hibernate.jdbc.time_zone]': UTC
-         '[integration.envers.enabled]': true
-          
+         "[hibernate.show_sql]": false
+         "[hibernate.format_sql]": true
+         "[hibernate.use_sql_comments]": true
+         "[hibernate.jdbc.time_zone]": UTC
+         "[integration.envers.enabled]": true
+
      flyway:
        enabled: true
-        
+
    mongock:
      enabled: true
      default-author: system
      index-creation: true
    #  transaction-strategy: change_unit
-    
+
    problem:
      debug-enabled: false
      stacktrace-enabled: true
      cause-chains-enabled: false
-    
+
    server:
      port: 8090
      #servlet:
-       #context-path:
-    
+     #context-path:
+
    logging:
      file:
        path: logs
@@ -82,100 +98,64 @@ It is designed to be a starting point for your Spring Boot applications, providi
        rollingpolicy:
          clean-history-on-start: true
    debug: false
-    
+
    # ===================================================================
    # Application specific properties
    # Add your own application properties here
    # ===================================================================
-    
+
    application:
      mongodb:
-    #   entity-base-packages:
-    #     - com.ksoot.hammer
+       #   entity-base-packages:
+       #     - com.ksoot.hammer
        auditing:
          enabled: true
-    #       prefix:
-    #       suffix: _aud
-    ```
+     #       prefix:
+     #       suffix: _aud
+   ```
 
    and run the application in `local` profile by setting `spring.profiles.active` to `local` in IDE or from cmd as follows.
+
    ```bash
    mvn spring-boot:run -Plocal
    ```
+
 5. Access the **Swagger** at: [http://localhost:8090/swagger-ui/index.html](http://localhost:8090/swagger-ui/index.html)
 
-### Database Support
-
-- **Dual Database Support**
-  - PostgreSQL implementation with JPA
-  - MongoDB implementation
-  - Database versioning for both PostgreSQL and MongoDB
-  - Audit logging for entities in both databases
-  - Audit log history APIs for tracking changes
-
-### API Development
-
-- RESTful CRUD APIs following best practices.
-- API documentation using Springdoc Swagger.
-- Declarative exception handling with no boilerplate code.
-- Object mapping using MapStruct for clean DTO transformations.
-
-### Development Tools
-
-- Multiple profiles for different environments
-- Docker support for easy deployment
-- Unit test cases with examples
-- Code formatting using Google Java Format
-
-### Quick Start
-
-1. Clone the repository
-2. Run the application using Docker:
-   ```bash
-   mvn spring-boot:run -Pdocker
-   ```
-3. Access the API documentation at: `http://localhost:8080/swagger-ui.html`
-
 ## Project Structure
+Following Domain Driven Design([DDD](https://martinfowler.com/bliki/DomainDrivenDesign.html)) following is the project structure which reflects DDD concepts.
 
-The project follows a clean architecture pattern with the following key components:
 
-- `controllers`: REST API endpoints
-- `services`: Business logic implementation
-- `repositories`: Database access layer
-- `models`: Entity and DTO classes
-- `config`: Application configuration
-- `utils`: Utility classes and helpers
+## Rest APIs
+### Specification and Documentation
 
-## Key Implementations
+### Implementation
 
-### Database Versioning
+### Response Format
 
-- Liquibase for PostgreSQL
-- MongoDB migrations
 
-### Audit Logging
+## Validations
+### Request Validation
 
-- Automatic audit trail for entity changes
-- History tracking APIs
-- Support for both PostgreSQL and MongoDB
+### Entity Validations
 
-### API Documentation
+## Database versioning
 
-- Swagger UI integration
-- Detailed API descriptions
-- Request/Response examples
+### Postgres
+
+### MongoDB
+
+## Audit Logging
+
+### Postgres
+
+### MongoDB
 
 ### Exception Handling
 
-- Global exception handler
-- Custom exception classes
-- Proper HTTP status codes
-- Meaningful error messages
-
 ## Testing
 
-The project includes:
+The project includes Unit tests following Slice testing technique, so that the whole Spring boot context is not loaded for unit tests and they run faster.
 
 - Unit tests
 - Integration tests
@@ -195,6 +175,11 @@ This project implements several best practices:
 
 Feel free to fork this repository and use it as a base for your projects. If you find any issues or have suggestions for improvements, please create a pull request.
 
-## License
+## Licence
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+Open source [**The MIT License**](http://www.opensource.org/licenses/mit-license.php)
+
+## Authors and acknowledgment
+
+[**Rajveer Singh**](https://www.linkedin.com/in/rajveer-singh-589b3950/), In case you find any issues or need any support, please email me at raj14.1984@gmail.com.
+Please give me a :star: if you find it helpful.
