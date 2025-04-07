@@ -42,9 +42,9 @@ It is designed to be a starting point for your Spring Boot applications, providi
    mvn spring-boot:run -Pdocker
    ```
    > [!IMPORTANT]
-   > On first run, it may take some time to download Docker images for Postgres and MongoDB,  
+   > On the first run, it may take some time to download Docker images for Postgres and MongoDB,  
    > but the application may try to connect to databases too early before their docker containers are started,  
-   > hence failing due to db connection exception. Just make sure docker imaged are downloaded and then run the application again.
+   > hence may throw failing due to db connection exception. Just make sure docker imaged are downloaded and then run the application again.
 4. In case you want to use self-hosted Postgres and MongoDB, create `application-local.yml` as follows, update Postgres and MongoDB connection parameters.
 
    ```yaml
