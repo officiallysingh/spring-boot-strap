@@ -1,11 +1,11 @@
 # Spring Bootstrap Application
 
 [![Java](https://img.shields.io/badge/java-21-blue.svg)](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html)
+[![Java](https://img.shields.io/badge/spring_boot-3.4.4-blue.svg)](https://spring.io/projects/spring-boot)
 [![Maven](https://img.shields.io/badge/maven-3.9.5-blue.svg)](https://maven.apache.org/)
 [![Postgres](https://img.shields.io/badge/postgres-17.4-blue.svg)](https://www.postgresql.org/)
 [![MongoDB](https://img.shields.io/badge/mongodb-6.0.6-blue.svg)](https://www.mongodb.com/)
 [![Docker](https://img.shields.io/badge/docker-20.10.24-blue.svg)](https://www.docker.com/)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](http://www.opensource.org/licenses/mit-license.php)
 
 A comprehensive Spring Boot base project that serves as an opinionated template for building robust Spring boot applications.
 
@@ -123,7 +123,7 @@ It is designed to be a starting point for your Spring Boot applications, providi
 5. Access the **Swagger** at: [http://localhost:8090/swagger-ui/index.html](http://localhost:8090/swagger-ui/index.html)
 
 ## Project Structure
-Following Domain Driven Design([DDD](https://martinfowler.com/bliki/DomainDrivenDesign.html)) following is the project structure which reflects DDD concepts.
+Following Domain Driven Design([DDD](https://martinfowler.com/bliki/DomainDrivenDesign.html)) the project structure is as follows.
 
 
 ## Rest APIs
@@ -162,13 +162,14 @@ The project includes Unit tests following Slice testing technique, so that the w
 Feel free to fork this repository and use it as a base for your projects. If you find any issues or have suggestions for improvements, please create a pull request.
 
 ## Licence
-Open source [**The MIT License**](http://www.opensource.org/licenses/mit-license.php)
+Open source [![License](https://img.shields.io/badge/license-MIT-green.svg)](http://www.opensource.org/licenses/mit-license.php)
 
 ## Author
 [**Rajveer Singh**](https://www.linkedin.com/in/rajveer-singh-589b3950/), In case you find any issues or need any support, please email me at raj14.1984@gmail.com.
 Give it a :star: on [Github](https://github.com/officiallysingh/spring-boot-spark-kubernetes) and a :clap: on [**medium.com**](https://officiallysingh.medium.com/spark-spring-boot-starter-e206def765b9) if you find it helpful.
 
 ## References
+### Documentations
 * [Spring boot](https://docs.spring.io/spring-boot/index.html)
 * [Spring boot Exception Handling](https://github.com/officiallysingh/spring-boot-problem-handler)
 * [Spring Boot DevTools](https://docs.spring.io/spring-boot/3.4.3/reference/using/devtools.html)
@@ -198,3 +199,48 @@ Give it a :star: on [Github](https://github.com/officiallysingh/spring-boot-spar
 * [OTLP for metrics](https://docs.spring.io/spring-boot/3.4.3/reference/actuator/metrics.html#actuator.metrics.export.otlp)
 * [Getting Started with Distributed Tracing](https://docs.spring.io/spring-boot/3.4.3/reference/actuator/tracing.html)
 
+### Guides
+The following guides illustrate how to use some features concretely:
+
+* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
+* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
+* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
+* [Producing a SOAP web service](https://spring.io/guides/gs/producing-web-service/)
+* [Handling Form Submission](https://spring.io/guides/gs/handling-form-submission/)
+* [Securing a Web Application](https://spring.io/guides/gs/securing-web/)
+* [Spring Boot and OAuth2](https://spring.io/guides/tutorials/spring-boot-oauth2/)
+* [Authenticating a User with LDAP](https://spring.io/guides/gs/authenticating-ldap/)
+* [Messaging with Redis](https://spring.io/guides/gs/messaging-redis/)
+* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
+* [Accessing Data with MongoDB](https://spring.io/guides/gs/accessing-data-mongodb/)
+* [Creating a Batch Service](https://spring.io/guides/gs/batch-processing/)
+* [Integrating Data](https://spring.io/guides/gs/integration/)
+* [Validation](https://spring.io/guides/gs/validating-form-input/)
+* [Building a RESTful Web Service with Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/)
+* [Caching Data with Spring](https://spring.io/guides/gs/caching/)
+
+### Additional Links
+These additional references should also help you:
+
+* [Declarative REST calls with Spring Cloud OpenFeign sample](https://github.com/spring-cloud-samples/feign-eureka)
+* [Various sample apps using Spring Cloud Function](https://github.com/spring-cloud/spring-cloud-function/tree/main/spring-cloud-function-samples)
+
+### Docker Compose support
+This project contains a Docker Compose file named `compose.yaml`.
+In this file, the following services have been defined:
+
+* mongodb: [`mongo:latest`](https://hub.docker.com/_/mongo)
+* postgres: [`postgres:latest`](https://hub.docker.com/_/postgres)
+* redis: [`redis:latest`](https://hub.docker.com/_/redis)
+
+Please review the tags of the used images and set them to the same as you're running in production.
+
+### Testcontainers support
+
+This project uses [Testcontainers at development time](https://docs.spring.io/spring-boot/3.4.3/reference/features/dev-services.html#features.dev-services.testcontainers).
+
+Testcontainers has been configured to use the following Docker images:
+
+* [`apache/kafka-native:latest`](https://hub.docker.com/r/apache/kafka-native)
+* [`mongo:latest`](https://hub.docker.com/_/mongo)
+* [`postgres:latest`](https://hub.docker.com/_/postgres)
