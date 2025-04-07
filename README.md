@@ -6,6 +6,7 @@
 [![MongoDB](https://img.shields.io/badge/mongodb-6.0.6-blue.svg)](https://www.mongodb.com/)
 [![Docker](https://img.shields.io/badge/docker-20.10.24-blue.svg)](https://www.docker.com/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](http://www.opensource.org/licenses/mit-license.php)
+
 A comprehensive Spring Boot base project that serves as an opinionated template for building robust Spring boot applications.
 
 ## Getting Started
@@ -14,7 +15,6 @@ This project comes pre-configured with common enterprise concerns and includes d
 It is designed to be a starting point for your Spring Boot applications, providing a solid foundation with best practices and common patterns.
 
 ### Prerequisites
-
 - [Java 21](https://sdkman.io/)
 - [Maven](https://maven.apache.org)
 - [Docker](https://www.docker.com)
@@ -22,13 +22,13 @@ It is designed to be a starting point for your Spring Boot applications, providi
 - Optional: [Configure Formatter in IntelliJ](https://github.com/google/google-java-format/blob/master/README.md#intellij-android-studio-and-other-jetbrains-ides), similarly for other IDEs
 
 ## Features
-
 - **Database Support**: Both `PostgreSQL` and `MongoDB` sample repositories with `Spring Data JPA` and `Spring Data Mongodb` implementations.
 - **API Development**: Sample RESTful CRUD APIs following best practices and API documentation using `springdoc-openapi`.
 - **Database Versioning**: Implemented using `Flyway` for `Postgres` and using `Mongock` for `MongoDB`.
 - **Audit Logging**: Implemented using `Hibernate Envers` for `Postgres` and Custom implementation for `MongoDB`.
 - **Docker Support**:` Docker compose` for seamless deployment.
 - **Unit Testing**: Example Unit test cases for `Controller` and `Service` classes. Whole Spring boot context should not be loaded for unit tests, instead Slice testing should be implemented.
+- Consistent code formatting
 
 ## Quick start
 
@@ -158,25 +158,11 @@ Following Domain Driven Design([DDD](https://martinfowler.com/bliki/DomainDriven
 The project includes Unit tests following Slice testing technique, so that the whole Spring boot context is not loaded for unit tests and they run faster.
 
 - Unit tests
-- Integration tests
-- Test containers for database testing
-
-## Best Practices
-
-This project implements several best practices:
-
-- Clean code principles
-- SOLID principles
-- Proper separation of concerns
-- Comprehensive documentation
-- Consistent code formatting
 
 ## Contributing
-
 Feel free to fork this repository and use it as a base for your projects. If you find any issues or have suggestions for improvements, please create a pull request.
 
 ## Licence
-
 Open source [**The MIT License**](http://www.opensource.org/licenses/mit-license.php)
 
 ## Authors and acknowledgment
