@@ -88,7 +88,7 @@ mongock:
   index-creation: true
   #    transaction-strategy: change_unit
   migration-scan-package:
-    - com.ksoot.domain.migration.InitMongoDB
+    - ai.whilter.domain.migration.InitMongoDB
 
 #------------------------- Swagger configuration -------------------------
 springdoc:
