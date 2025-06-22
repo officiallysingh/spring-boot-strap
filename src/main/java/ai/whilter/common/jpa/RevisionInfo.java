@@ -12,7 +12,7 @@ public class RevisionInfo<N extends Number & Comparable<N>> {
 
   private final OffsetDateTime datetime;
 
-  private final String actor;
+  private final String author;
 
   private final RevisionMetadata.RevisionType revisionType;
 
@@ -20,10 +20,10 @@ public class RevisionInfo<N extends Number & Comparable<N>> {
     this.number = revisionMetadata.getRequiredRevisionNumber();
     this.revisionType = revisionMetadata.getRevisionType();
     if (revisionMetadata.getDelegate() instanceof RevisionEntity revisionEntity) {
-      this.actor = revisionEntity.getActor();
+      this.author = revisionEntity.getAuthor();
       this.datetime = revisionEntity.getDatetime();
     } else {
-      this.actor = CommonConstants.SYSTEM_USER;
+      this.author = CommonConstants.SYSTEM_USER;
       this.datetime = OffsetDateTime.from(revisionMetadata.getRequiredRevisionInstant());
     }
   }

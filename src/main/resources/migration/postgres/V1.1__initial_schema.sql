@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS revisions
 (
     id integer NOT NULL,
     "timestamp" bigint NOT NULL,
-    actor character varying(255) NOT NULL,
+    author character varying(255) NOT NULL,
     datetime timestamp(6) with time zone NOT NULL,
     CONSTRAINT revisions_pkey PRIMARY KEY (id)
 );

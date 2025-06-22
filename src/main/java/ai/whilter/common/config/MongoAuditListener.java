@@ -2,7 +2,7 @@ package ai.whilter.common.config;
 
 import static org.springframework.data.mongodb.core.query.SerializationUtils.serializeToJsonSafely;
 
-import ai.whilter.common.CommonConstants;
+import ai.whilter.common.audit.AuthorProvider;
 import ai.whilter.common.mongo.AuditEvent;
 import ai.whilter.common.mongo.AuditMetaData;
 import ai.whilter.common.mongo.Auditable;
@@ -47,6 +47,8 @@ public class MongoAuditListener implements InitializingBean {
 
   private final AuditMetaData auditMetaData;
 
+  private final AuthorProvider authorProvider;
+
   @EventListener(condition = "@auditMetaData.isPresent(#event.getCollectionName())")
   public void onAfterSave(final AfterSaveEvent<?> event) {
     if (log.isDebugEnabled()) {
@@ -69,7 +71,7 @@ public class MongoAuditListener implements InitializingBean {
             AuditEvent.ofSaveEvent(
                 event,
                 revision,
-                this.getAuditUserName(),
+                this.authorProvider.getAuthor(),
                 this.auditMetaData.getVersionProperty(event.getCollectionName()));
         return this.mongoOperations.insert(auditEvent, auditCollectionName);
       } catch (final DuplicateKeyException exception) {
@@ -110,7 +112,7 @@ public class MongoAuditListener implements InitializingBean {
         Query query = new Query(Criteria.where("collection_name").is(event.getCollectionName()));
         long revision = this.mongoOperations.count(query, auditCollectionName) + 1;
         final AuditEvent auditEvent =
-            AuditEvent.ofDeleteEvent(event, revision, this.getAuditUserName());
+            AuditEvent.ofDeleteEvent(event, revision, this.authorProvider.getAuthor());
         return this.mongoOperations.insert(auditEvent, auditCollectionName);
       } catch (final DuplicateKeyException exception) {
         if (attempt > 2) { // Max three attempts
@@ -140,9 +142,9 @@ public class MongoAuditListener implements InitializingBean {
   //        .map(Authentication::getName)
   //        .orElse(CommonConstants.SYSTEM_USER);
   //  }
-  private String getAuditUserName() {
-    return CommonConstants.SYSTEM_USER;
-  }
+  //  private String getAuditUserName() {
+  //    return CommonConstants.SYSTEM_USER;
+  //  }
 
   @Override
   public void afterPropertiesSet() {

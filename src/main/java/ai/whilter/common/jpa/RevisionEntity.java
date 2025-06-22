@@ -28,6 +28,6 @@ public class RevisionEntity extends DefaultRevisionEntity {
   private OffsetDateTime datetime;
 
   @NotNull
-  @Column(name = "actor", updatable = false, nullable = false)
-  private String actor;
+  @Column(name = "author", updatable = false, nullable = false)
+  private String author;
 }

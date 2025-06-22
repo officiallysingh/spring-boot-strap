@@ -1,7 +1,10 @@
 package ai.whilter.common.config;
 
+import ai.whilter.common.audit.AuthorProvider;
+import ai.whilter.common.audit.SystemAuthorProvider;
 import ai.whilter.common.util.MessageProvider;
 import ai.whilter.common.util.pagination.PaginatedResourceAssembler;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
@@ -40,4 +43,21 @@ public class GeneralAutoConfiguration {
     beanRegistry.setApplicationContext(applicationContext);
     return beanRegistry;
   }
+
+  // Uncomment if you want to use just a hardcoded author name always.
+  //  @Bean
+  //  AuthorProvider authorProvider() {
+  //    return new MockAuthorProvider();
+  //  }
+
+  @Bean
+  AuthorProvider authorProvider(@Value("#{systemProperties['user.name']}") String systemUserName) {
+    return new SystemAuthorProvider(systemUserName);
+  }
+
+  // Uncomment if you have spring-boot-starter-security dependency
+  //  @Bean
+  //  AuthorProvider authorProvider() {
+  //    return new SpringSecurityAuthorProvider();
+  //  }
 }

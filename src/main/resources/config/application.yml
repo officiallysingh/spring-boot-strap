@@ -33,13 +33,13 @@ spring:
   data:
     mongodb:
       uri: ${MONGODB_URL:mongodb://localhost:27017}
-      database: ${MONGODB_DATABASE:sample_db}
+      database: ${MONGODB_DATABASE:spring_boot_strap}
       auto-index-creation: false
       uuid-representation: standard
 
   #------------------------- Database configuration -------------------------
   datasource:
-    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/sample_db}
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/spring_boot_strap}
     username: ${POSTGRES_USERNAME:postgres}
     password: ${POSTGRES_PASSWORD:admin}
     hikari:

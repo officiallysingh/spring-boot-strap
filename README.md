@@ -1,7 +1,7 @@
 # Spring Bootstrap Application
 
 [![Java](https://img.shields.io/badge/java-21-blue.svg)](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html)
-[![Java](https://img.shields.io/badge/spring_boot-3.4.4-blue.svg)](https://spring.io/projects/spring-boot)
+[![Spring Boot](https://img.shields.io/badge/spring_boot-3.4.4-blue.svg)](https://spring.io/projects/spring-boot)
 [![Maven](https://img.shields.io/badge/maven-3.9.5-blue.svg)](https://maven.apache.org/)
 [![Postgres](https://img.shields.io/badge/postgres-17.4-blue.svg)](https://www.postgresql.org/)
 [![MongoDB](https://img.shields.io/badge/mongodb-6.0.6-blue.svg)](https://www.mongodb.com/)
