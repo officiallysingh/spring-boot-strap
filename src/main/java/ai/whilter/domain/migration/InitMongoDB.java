@@ -39,26 +39,26 @@ public class InitMongoDB {
 
   private void ensureStateIndexes(final MongoTemplate mongoTemplate) {
     final Index unqIdxStateCode =
-        new Index().named("idx_unq_code").on("code", Sort.Direction.ASC).unique();
-    mongoTemplate.indexOps(COLLECTION_STATE).ensureIndex(unqIdxStateCode);
+        new Index().named("idx_unq_state_code").on("code", Sort.Direction.ASC).unique();
+    mongoTemplate.indexOps(COLLECTION_STATE).createIndex(unqIdxStateCode);
     final Index unqIdxStateName =
-        new Index().named("idx_unq_name").on("name", Sort.Direction.ASC).unique();
-    mongoTemplate.indexOps(COLLECTION_STATE).ensureIndex(unqIdxStateName);
+        new Index().named("idx_unq_state_name").on("name", Sort.Direction.ASC).unique();
+    mongoTemplate.indexOps(COLLECTION_STATE).createIndex(unqIdxStateName);
   }
 
   private void ensureCityIndexes(final MongoTemplate mongoTemplate) {
     final Index unqIdxCityCodeName =
         new Index()
-            .named("idx_unq_code_name")
+            .named("idx_unq_city_code_name")
             .on("code", Sort.Direction.ASC)
             .on("name", Sort.Direction.ASC)
             .unique();
-    mongoTemplate.indexOps(COLLECTION_CITY).ensureIndex(unqIdxCityCodeName);
+    mongoTemplate.indexOps(COLLECTION_CITY).createIndex(unqIdxCityCodeName);
     final Index unqIdxCityCode =
-        new Index().named("idx_unq_code").on("code", Sort.Direction.ASC).unique();
-    mongoTemplate.indexOps(COLLECTION_CITY).ensureIndex(unqIdxCityCode);
-    final Index idxStateId = new Index().named("idx_state_id").on("state", Sort.Direction.ASC);
-    mongoTemplate.indexOps(COLLECTION_CITY).ensureIndex(idxStateId);
+        new Index().named("idx_unq_city_code").on("code", Sort.Direction.ASC).unique();
+    mongoTemplate.indexOps(COLLECTION_CITY).createIndex(unqIdxCityCode);
+    final Index idxStateId = new Index().named("idx_city_state_id").on("state", Sort.Direction.ASC);
+    mongoTemplate.indexOps(COLLECTION_CITY).createIndex(idxStateId);
   }
 
   @RollbackBeforeExecution

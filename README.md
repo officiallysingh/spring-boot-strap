@@ -152,6 +152,7 @@ Following Domain Driven Design([DDD](https://martinfowler.com/bliki/DomainDriven
 ### MongoDB
 
 ### Exception Handling
+https://github.com/officiallysingh/spring-boot-problem-handler
 
 ## Testing
 The project includes Unit tests following Slice testing technique, so that the whole Spring boot context is not loaded for unit tests and they run faster.

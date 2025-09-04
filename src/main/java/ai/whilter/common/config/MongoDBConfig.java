@@ -7,11 +7,9 @@ import com.mongodb.MongoClientSettings;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
@@ -26,13 +24,10 @@ import org.springframework.boot.autoconfigure.mongo.MongoProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.data.convert.ReadingConverter;
-import org.springframework.data.convert.WritingConverter;
 import org.springframework.data.mongodb.MongoDatabaseFactory;
 import org.springframework.data.mongodb.MongoTransactionManager;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
-import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
+import org.springframework.data.mongodb.core.mapping.event.ValidatingEntityCallback;
 import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
@@ -90,9 +85,9 @@ public class MongoDBConfig extends AbstractMongoClientConfiguration {
   }
 
   @Bean
-  ValidatingMongoEventListener validatingMongoEventListener(
+  ValidatingEntityCallback validatingEntityCallback(
       final LocalValidatorFactoryBean factory) {
-    return new ValidatingMongoEventListener(factory);
+    return new ValidatingEntityCallback(factory);
   }
 
   @Bean
@@ -105,52 +100,6 @@ public class MongoDBConfig extends AbstractMongoClientConfiguration {
   @Bean
   MongoTransactionManager transactionManager(final MongoDatabaseFactory mongoDatabaseFactory) {
     return new MongoTransactionManager(mongoDatabaseFactory);
-  }
-
-  @Override
-  public MongoCustomConversions customConversions() {
-    final List<Object> converters = new ArrayList<>();
-    converters.add(new ZonedDateTimeReadConverter());
-    converters.add(new ZonedDateTimeWriteConverter());
-    converters.add(new OffsetDateTimeReadConverter());
-    converters.add(new OffsetDateTimeWriteConverter());
-    return new MongoCustomConversions(converters);
-  }
-
-  @ReadingConverter
-  static class ZonedDateTimeReadConverter implements Converter<Date, ZonedDateTime> {
-
-    @Override
-    public ZonedDateTime convert(final Date source) {
-      return source.toInstant().atZone(DateTimeUtils.SYSTEM_ZONE_ID);
-    }
-  }
-
-  @WritingConverter
-  static class ZonedDateTimeWriteConverter implements Converter<ZonedDateTime, Date> {
-
-    @Override
-    public Date convert(final ZonedDateTime source) {
-      return Date.from(source.toInstant());
-    }
-  }
-
-  @ReadingConverter
-  static class OffsetDateTimeReadConverter implements Converter<Date, OffsetDateTime> {
-
-    @Override
-    public OffsetDateTime convert(final Date source) {
-      return source.toInstant().atZone(DateTimeUtils.SYSTEM_ZONE_ID).toOffsetDateTime();
-    }
-  }
-
-  @WritingConverter
-  static class OffsetDateTimeWriteConverter implements Converter<OffsetDateTime, Date> {
-
-    @Override
-    public Date convert(final OffsetDateTime source) {
-      return Date.from(source.toInstant());
-    }
   }
 
   static class OffsetDateTimeCodec implements Codec<OffsetDateTime> {

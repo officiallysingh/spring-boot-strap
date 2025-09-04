@@ -33,7 +33,7 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 @Auditable
 @Document(collection = COLLECTION_CITY)
 @TypeAlias("city")
-@CompoundIndex(name = "unk_cities_code_name", def = "{'code': 1, 'name' : 1}", unique = true)
+@CompoundIndex(name = "idx_unq_city_code_name", def = "{'code': 1, 'name' : 1}", unique = true)
 public class City extends AbstractEntity {
 
   @NotNull
@@ -44,7 +44,7 @@ public class City extends AbstractEntity {
   @NotEmpty
   @Size(min = 1, max = 3)
   @Pattern(regexp = RegularExpressions.CITY_CODE)
-  @Indexed(unique = true)
+  @Indexed(unique = true, name = "idx_unq_city_code")
   @Setter
   private String code;
 

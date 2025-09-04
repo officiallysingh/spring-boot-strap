@@ -40,14 +40,14 @@ public class State extends AbstractEntity {
   @NotEmpty
   @Size(min = 2, max = 2)
   @Pattern(regexp = RegularExpressions.TWO_CHAR_ALPHA_CAPITAL)
-  @Indexed(unique = true)
+  @Indexed(unique = true, name = "idx_unq_state_code")
   @Setter
   private String code;
 
   @NotEmpty
   @Size(max = 50)
   @Pattern(regexp = RegularExpressions.ALPHABETS_AND_SPACES)
-  @Indexed(unique = true)
+  @Indexed(unique = true, name = "idx_unq_state_name")
   @Setter
   private String name;
 

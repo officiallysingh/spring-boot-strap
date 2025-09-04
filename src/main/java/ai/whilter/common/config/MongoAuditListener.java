@@ -36,7 +36,8 @@ import org.springframework.util.Assert;
 @ConditionalOnProperty(
     prefix = "application.mongodb.auditing",
     name = "enabled",
-    havingValue = "true")
+    havingValue = "true",
+    matchIfMissing = true)
 @Slf4j
 @RequiredArgsConstructor
 public class MongoAuditListener implements InitializingBean {
